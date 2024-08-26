@@ -57,7 +57,7 @@ export default function Home() {
         </nav>
 
         {/* Hero */}
-        <section className="mx-auto flex max-w-xl flex-col items-center justify-center py-24 text-center">
+        <section className="mx-auto flex max-w-xl flex-col items-center justify-center px-4 py-24 text-center">
           <h1 className="text-3xl sm:text-5xl">
             Web3 Profiles for SheFi Summit Attendees
           </h1>
@@ -72,10 +72,10 @@ export default function Home() {
       </section>
 
       {/* Connect */}
-      <section className="bg-brand-yellowBg flex flex-col items-center gap-8 px-8 py-14">
+      <section className="bg-brand-yellowBg flex flex-col items-center gap-6 px-4 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
         <h2 className="text-2xl sm:text-4xl">Connect with each other</h2>
 
-        <div className="grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <div className="grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {profiles.map((profile) => (
             <div
               key={profile.name}

@@ -19,6 +19,9 @@ const config: Config = {
           pink: 'var(--brand-pink)',
         },
       },
+      fontFamily: {
+        sans: ['var(--font-cy-grotesk)'],
+      },
       backgroundImage: {
         'gradient-radial':
           'linear-gradient(0deg, rgba(243, 244, 231, 0.10) 0%, rgba(243, 244, 231, 0.10) 100%), radial-gradient(109.9% 50% at 50% 50.09%, #FF7144 0%, #FFAFD8 33.33%, #F3F4E7 66.67%, #EDEDEB 100%)',

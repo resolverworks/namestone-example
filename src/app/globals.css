@@ -15,4 +15,11 @@
 
 body {
   background-color: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-seasons);
 }
