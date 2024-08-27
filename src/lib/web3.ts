@@ -1,4 +1,4 @@
-import { getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { getDefaultConfig } from 'connectkit'
 import { createConfig, http } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
 
@@ -8,17 +8,13 @@ if (!WALLETCONNECT_ID) {
   throw new Error('Missing NEXT_PUBLIC_WALLETCONNECT_ID')
 }
 
-const { connectors } = getDefaultWallets({
-  appName: 'SheFi Names',
-  projectId: WALLETCONNECT_ID,
-})
-
-const chains = [mainnet] as const
-
-export const wagmiConfig = createConfig({
-  chains,
-  connectors,
-  transports: {
-    [mainnet.id]: http(),
-  },
-})
+export const wagmiConfig = createConfig(
+  getDefaultConfig({
+    chains: [mainnet],
+    transports: {
+      [mainnet.id]: http(),
+    },
+    walletConnectProjectId: WALLETCONNECT_ID,
+    appName: 'SheFi Names',
+  })
+)

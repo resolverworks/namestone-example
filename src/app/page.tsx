@@ -1,5 +1,7 @@
 import { Button } from '@/components/Button'
+import { ConnectButton } from '@/components/ConnectButton'
 import { FarcasterIcon, XIcon } from '@/components/Icons'
+import { NameManager } from '@/components/NameManager'
 
 // Placeholder for Namestone data
 // https://namestone.xyz/docs/get-names
@@ -50,10 +52,7 @@ export default function Home() {
         <nav className="flex items-center justify-between px-4 py-6 sm:p-8">
           <img src="/logo.webp" alt="logo" className="w-20 sm:w-28" />
 
-          <Button>
-            <span className="sm:hidden">Connect</span>
-            <span className="hidden sm:inline">Connect Wallet</span>
-          </Button>
+          <ConnectButton />
         </nav>
 
         {/* Hero */}
@@ -67,7 +66,7 @@ export default function Home() {
           </span>
 
           {/* Main interactive form */}
-          <div></div>
+          <NameManager />
         </section>
       </section>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
+import { ClientProviders } from '@/components/ClientProviders'
 import { cn } from '@/lib/utils'
 
 import './globals.css'
@@ -35,7 +36,9 @@ export default function RootLayout({
       lang="en"
       className={cn(seasonsFont.variable, cyGroteskFont.variable)}
     >
-      <body>{children}</body>
+      <body>
+        <ClientProviders>{children}</ClientProviders>
+      </body>
     </html>
   )
 }
