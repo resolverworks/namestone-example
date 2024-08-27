@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "connectkit": "^1.8.2",
+    "connectkit-next-siwe": "^0.3.0",
     "next": "14.2.6",
     "pino-pretty": "^11.2.2",
     "react": "^18",
