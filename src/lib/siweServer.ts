@@ -16,7 +16,7 @@ export const siweServer = configureServerSideSIWE({
     transports: ckConfig.transports,
   },
   session: {
-    cookieName: 'connectkit-next-siwe',
+    cookieName: 'siwe',
     password: SESSION_SECRET,
     cookieOptions: {
       secure: process.env.NODE_ENV === 'production',
