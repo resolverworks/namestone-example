@@ -5,7 +5,7 @@ export const NamestoneProfileSchema = v.object({
   name: v.string(),
   address: v.string(),
   domain: v.string(),
-  textRecords: v.optional(v.record(v.string(), v.string())),
+  text_records: v.optional(v.record(v.string(), v.string())),
   coin_types: v.optional(
     v.object({
       '60': v.custom<Address>(

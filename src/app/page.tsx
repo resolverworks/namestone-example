@@ -1,50 +1,15 @@
-import { Button } from '@/components/Button'
 import { ConnectButton } from '@/components/ConnectButton'
 import { FarcasterIcon, XIcon } from '@/components/Icons'
 import { NameManager } from '@/components/NameManager'
+import { ProfileCard } from '@/components/ProfileCard'
+import { namestoneFetch, parentDomain } from '@/lib/namestone'
+import { NamestoneProfile } from '@/types/namestone'
 
-// Placeholder for Namestone data
-// https://namestone.xyz/docs/get-names
-const profiles = [
-  {
-    name: 'alice',
-    domain: 'shefi.eth',
-    textRecords: {
-      avatar:
-        'https://pbs.twimg.com/profile_images/1537166821413068801/tzy22ZqV_400x400.jpg',
-      'com.twitter': 'shefiorg',
-    },
-  },
-  {
-    name: 'bob',
-    domain: 'shefi.eth',
-    textRecords: {
-      avatar:
-        'https://pbs.twimg.com/profile_images/1537166821413068801/tzy22ZqV_400x400.jpg',
-      'com.twitter': 'shefiorg',
-    },
-  },
-  {
-    name: 'charlie',
-    domain: 'shefi.eth',
-    textRecords: {
-      avatar:
-        'https://pbs.twimg.com/profile_images/1537166821413068801/tzy22ZqV_400x400.jpg',
-      'com.twitter': 'shefiorg',
-    },
-  },
-  {
-    name: 'divia',
-    domain: 'shefi.eth',
-    textRecords: {
-      avatar:
-        'https://pbs.twimg.com/profile_images/1537166821413068801/tzy22ZqV_400x400.jpg',
-      'com.twitter': 'shefiorg',
-    },
-  },
-]
+export default async function Home() {
+  const profiles = await namestoneFetch<NamestoneProfile[]>({
+    path: `get-names?domain=${parentDomain}`,
+  })
 
-export default function Home() {
   return (
     <main>
       <section className="bg-gradient-radial">
@@ -66,38 +31,23 @@ export default function Home() {
           </span>
 
           {/* Main interactive form */}
-          <NameManager />
+          <NameManager className="max-w-md" />
         </section>
       </section>
 
       {/* Connect */}
-      <section className="bg-brand-yellowBg flex flex-col items-center gap-6 px-4 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
+      <section className="flex flex-col items-center gap-6 bg-brand-yellowBg px-4 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
         <h2 className="text-2xl sm:text-4xl">Connect with each other</h2>
 
         <div className="grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {profiles.map((profile) => (
-            <div
-              key={profile.name}
-              className="bg-brand-blueBg border-brand-blueBtn flex flex-col items-center gap-2 rounded-lg border p-4"
-            >
-              <img
-                src={profile.textRecords.avatar}
-                alt={profile.name}
-                width={48}
-                className="rounded-full"
-              />
-              <span>
-                {profile.name}.{profile.domain}
-              </span>
-
-              {/* <div></div> */}
-            </div>
+            <ProfileCard key={profile.name} profile={profile} />
           ))}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-brand-dark text-brand-light flex items-center justify-between gap-4 p-4 sm:px-8 sm:py-6">
+      <footer className="flex items-center justify-between gap-4 bg-brand-dark p-4 text-brand-light sm:px-8 sm:py-6">
         <div className="flex flex-col">
           <span>Powered by Namestone</span>
           <span>
@@ -111,7 +61,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="text-brand-pink flex gap-3">
+        <div className="flex gap-3 text-brand-pink">
           <a href="https://x.com/shefiorg" target="_blank">
             <XIcon className="h-6 w-6" />
           </a>

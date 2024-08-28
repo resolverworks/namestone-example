@@ -21,6 +21,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-cy-grotesk)'],
+        seasons: ['var(--font-seasons)'],
       },
       backgroundImage: {
         'gradient-radial':

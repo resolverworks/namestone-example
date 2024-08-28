@@ -13,8 +13,12 @@ export function useNamestone(address?: Address) {
       }
 
       const res = await fetch(`/api/names?${queryParams.toString()}`)
-      const json = await res.json()
-      return json as NamestoneProfile[]
+      const json = (await res.json()) as NamestoneProfile[]
+      if (address) {
+        return { first: json[0], all: json }
+      }
+
+      return { all: json }
     },
   })
 }

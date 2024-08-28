@@ -30,6 +30,9 @@ export async function namestoneFetch<T>({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
+    next: {
+      revalidate: 60, // 1 minute
+    },
   })
 
   const data = await res.json()
