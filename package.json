@@ -14,11 +14,13 @@
     "clsx": "^2.1.1",
     "connectkit": "^1.8.2",
     "connectkit-next-siwe": "^0.3.0",
+    "iron-session": "^8.0.3",
     "next": "14.2.6",
     "pino-pretty": "^11.2.2",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
+    "valibot": "^0.39.0",
     "viem": "^2.20.0",
     "wagmi": "^2.12.7"
   },
