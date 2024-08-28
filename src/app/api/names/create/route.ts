@@ -33,6 +33,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Limit names to 3-12 characters
+  if (profile.name.length < 3 || profile.name.length > 12) {
+    return NextResponse.json(
+      { error: 'Name must be between 3 and 12 characters' },
+      { status: 400 }
+    )
+  }
+
   const res = await namestoneFetch<{ success?: boolean; error?: string }>({
     path: 'claim-name?single_claim=1',
     method: 'POST',

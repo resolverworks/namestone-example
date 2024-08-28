@@ -4,6 +4,8 @@ import { useIsMounted, useModal } from 'connectkit'
 import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
 
 import { Button } from '@/components/Button'
+import { useNamestone } from '@/hooks/useNamestone'
+import { parentDomain } from '@/lib/namestone'
 import { cn, truncateAddress } from '@/lib/utils'
 
 export function ConnectButton({
@@ -11,6 +13,7 @@ export function ConnectButton({
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { address } = useAccount()
   const { data: ensName } = useEnsName({ address })
+  const { data: namestone } = useNamestone(address)
   const { data: ensAvatar } = useEnsAvatar({ name: ensName || undefined })
   const truncatedAddress = address ? truncateAddress(address) : undefined
 
@@ -28,7 +31,7 @@ export function ConnectButton({
         {...props}
       >
         {ensAvatar && <img src={ensAvatar} className="w-8 rounded-full" />}
-        <span>{ensName || truncatedAddress}</span>
+        <span>{namestone?.first?.name || ensName || truncatedAddress}</span>
       </Button>
     )
   }
