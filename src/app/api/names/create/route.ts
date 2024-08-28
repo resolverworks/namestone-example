@@ -39,5 +39,9 @@ export async function POST(req: NextRequest) {
     body: profile,
   })
 
+  if (res.error) {
+    return NextResponse.json({ error: res.error }, { status: 400 })
+  }
+
   return NextResponse.json(res)
 }
