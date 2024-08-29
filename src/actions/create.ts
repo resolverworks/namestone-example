@@ -6,6 +6,7 @@ import { Address } from 'viem'
 import { zfd } from 'zod-form-data'
 
 import { actionClient } from '@/actions/client'
+import { isAllowlisted } from '@/lib/allowlist'
 import { namestoneFetch } from '@/lib/namestone'
 import { NamestoneProfileSchema } from '@/types/namestone'
 
@@ -28,7 +29,13 @@ export const createName = actionClient
         throw new Error()
       }
     } catch (error) {
-      return { error: 'Unauthorized' }
+      return {
+        error: 'Your session is invalid. Please disconnect and connect again.',
+      }
+    }
+
+    if (!isAllowlisted(profile.address)) {
+      return { error: "You're not permitted to register a name at this time." }
     }
 
     // Limit names to 3-12 characters, alphanumeric, and no special characters (besides hyphen)
