@@ -1,3 +1,5 @@
+'use client'
+
 import { NamestoneProfile } from '@/types/namestone'
 
 import { TelegramIcon, XIcon } from './Icons'
@@ -9,8 +11,6 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
   const twitter = profile.text_records?.['com.twitter']
   const telegram = profile.text_records?.['org.telegram']
   const hasSocials = twitter || telegram
-
-  console.log(profile.text_records)
 
   return (
     <div
