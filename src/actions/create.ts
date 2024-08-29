@@ -31,9 +31,13 @@ export const createName = actionClient
       return { error: 'Unauthorized' }
     }
 
-    // Limit names to 3-12 characters
-    if (profile.name.length < 3 || profile.name.length > 12) {
-      return { error: 'Name must be between 3 and 12 characters' }
+    // Limit names to 3-12 characters, alphanumeric, and no special characters (besides hyphen)
+    if (
+      profile.name.length < 3 ||
+      profile.name.length > 12 ||
+      !/^[a-z0-9-]+$/.test(profile.name)
+    ) {
+      return { error: 'Name must be 3 - 12 alphanumeric characters' }
     }
 
     const res = await namestoneFetch<{ success?: boolean; error?: string }>({

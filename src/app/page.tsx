@@ -31,7 +31,7 @@ export default async function Home() {
           </span>
 
           {/* Main interactive form */}
-          <NameManager className="max-w-md" />
+          <NameManager />
         </section>
       </section>
 

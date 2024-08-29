@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const NamestoneProfileSchema = z.object({
-  name: z.string(),
+  name: z.string().toLowerCase(),
   address: z.string(),
   domain: z.string(),
   text_records: z.record(z.string(), z.string()).optional(),

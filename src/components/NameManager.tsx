@@ -41,7 +41,7 @@ export function NameManager({
     // Update name form
     return (
       <form
-        className={cn('flex w-full flex-col gap-2', className)}
+        className={cn('flex w-full max-w-md flex-col gap-2', className)}
         action={updateAction}
       >
         <input type="hidden" name="name" value={names.data.first.name} />
@@ -63,14 +63,14 @@ export function NameManager({
           />
         </div>
 
-        <Input
+        {/* <Input
           name="description"
           label="Description"
           placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia."
           defaultValue={names.data.first.text_records?.description}
-        />
+        /> */}
 
-        <SubmitButton text="Update" className="mt-1" />
+        <SubmitButton text="Update" className="mt-1 sm:mt-0" />
 
         {updateState.data?.error && (
           <p className="text-sm text-red-500">{updateState.data?.error}</p>
@@ -82,7 +82,7 @@ export function NameManager({
   // Register form
   return (
     <form
-      className={cn('flex flex-col gap-2', className)}
+      className={cn('flex w-full max-w-80 flex-col gap-2', className)}
       action={(formData) => {
         if (address && isSignedIn) {
           createAction(formData)
