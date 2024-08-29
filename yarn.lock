@@ -2967,6 +2967,11 @@ napi-wasm@^1.1.0:
   resolved "https://registry.yarnpkg.com/napi-wasm/-/napi-wasm-1.1.0.tgz#bbe617823765ae9c1bc12ff5942370eae7b2ba4e"
   integrity sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==
 
+next-safe-action@^7.7.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-7.7.1.tgz#1c516eab40b6b0ce1306b67f7617e9f1681255c5"
+  integrity sha512-XiPSoQF2B7Z0CluDpfHy0Jd9wAWqpN4FSH2wvYcxtePjT/YX3EkiGl/qFlxOEL4QFqU48KaDBmuAN8jH2W/RXA==
+
 next@14.2.6:
   version "14.2.6"
   resolved "https://registry.yarnpkg.com/next/-/next-14.2.6.tgz#2d294fe1ac806231cffd52ae2cf2e469b940536d"
@@ -4092,11 +4097,6 @@ uuid@^9.0.1:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
   integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
-valibot@^0.39.0:
-  version "0.39.0"
-  resolved "https://registry.yarnpkg.com/valibot/-/valibot-0.39.0.tgz#b6c42566fa362ca406339d8b24e4e3051ae4bc86"
-  integrity sha512-d+vE8SDRNy9zKg6No5MHz2tdz8H6CW8X3OdqYdmlhnoqQmEoM6Hu0hJUrZv3tPSVrzZkIIMCtdCQtMzcM6NCWw==
-
 valtio@1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/valtio/-/valtio-1.11.2.tgz#b8049c02dfe65620635d23ebae9121a741bb6530"
@@ -4318,6 +4318,16 @@ yargs@^17.5.1:
     string-width "^4.2.3"
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
+
+zod-form-data@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/zod-form-data/-/zod-form-data-2.0.2.tgz#ce6586ffa3d501a66a00d7b4896b6b6ec1e10404"
+  integrity sha512-sKTi+k0fvkxdakD0V5rq+9WVJA3cuTQUfEmNqvHrTzPLvjfLmkkBLfR0ed3qOi9MScJXTHIDH/jUNnEJ3CBX4g==
+
+zod@^3.23.8:
+  version "3.23.8"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
+  integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
 
 zustand@4.4.1:
   version "4.4.1"

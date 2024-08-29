@@ -1,10 +1,12 @@
 'use client'
 
 import { useSIWE } from 'connectkit'
-import React, { useEffect, useState } from 'react'
-import { Address } from 'viem'
+import React, { useEffect } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 import { useAccount } from 'wagmi'
 
+import { createName } from '@/actions/create'
+import { updateName } from '@/actions/update'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { useNamestone } from '@/hooks/useNamestone'
@@ -18,62 +20,34 @@ export function NameManager({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const { data, isSignedIn, signIn } = useSIWE()
-  const address = data?.address as Address | undefined
+  const { address } = useAccount()
+  const { isSignedIn, signIn } = useSIWE()
   const names = useNamestone(address)
 
-  const [state, setState] = useState<{
-    status: 'idle' | 'loading' | 'success' | 'error'
-    message?: string
-  }>({ status: 'idle' })
+  const [createState, createAction] = useFormState(createName, {})
+  const [updateState, updateAction] = useFormState(updateName, {})
 
   useEffect(() => {
-    if (state.status === 'success') {
+    if (createState.data?.success) {
       names.refetch()
     }
-  }, [state.status])
+  }, [createState.data])
 
   if (names.isLoading) {
     return <Spinner />
   }
 
-  if (address && names.data?.first) {
+  if (address && isSignedIn && names.data?.first) {
     // Update name form
     return (
       <form
         className={cn('flex w-full flex-col gap-2', className)}
-        onSubmit={async (e) => {
-          e.preventDefault()
-          setState({ status: 'loading' })
-
-          const formData = new FormData(e.target as HTMLFormElement)
-          const twitter = formData.get('twitter') as string | undefined
-          const telegram = formData.get('telegram') as string | undefined
-          const description = formData.get('description') as string | undefined
-
-          const res = await fetch('/api/names/update', {
-            method: 'POST',
-            body: JSON.stringify({
-              name: names.data.first?.name,
-              address,
-              domain: parentDomain,
-              text_records: {
-                'com.twitter': twitter,
-                'org.telegram': telegram,
-                description,
-              },
-            }),
-          })
-
-          const json = await res.json()
-
-          if (json.error) {
-            setState({ status: 'error', message: json.error })
-          } else {
-            setState({ status: 'success' })
-          }
-        }}
+        action={updateAction}
       >
+        <input type="hidden" name="name" value={names.data.first.name} />
+        <input type="hidden" name="address" value={address} />
+        <input type="hidden" name="domain" value={parentDomain} />
+
         <div className="flex flex-col gap-2 sm:flex-row">
           <Input
             name="twitter"
@@ -96,13 +70,11 @@ export function NameManager({
           defaultValue={names.data.first.text_records?.description}
         />
 
-        <Button
-          type="submit"
-          className="mt-1 rounded-lg"
-          loading={state.status === 'loading'}
-        >
-          Update
-        </Button>
+        <SubmitButton text="Update" className="mt-1" />
+
+        {updateState.data?.error && (
+          <p className="text-sm text-red-500">{updateState.data?.error}</p>
+        )}
       </form>
     )
   }
@@ -111,30 +83,11 @@ export function NameManager({
   return (
     <form
       className={cn('flex flex-col gap-2', className)}
-      onSubmit={async (e) => {
-        e.preventDefault()
-
-        if (!address) return
-
-        setState({ status: 'loading' })
-        const formData = new FormData(e.target as HTMLFormElement)
-        const name = formData.get('name') as string
-
-        const res = await fetch('/api/names/create', {
-          method: 'POST',
-          body: JSON.stringify({
-            name,
-            address,
-            domain: parentDomain,
-          }),
-        })
-
-        const json = await res.json()
-
-        if (json.error) {
-          setState({ status: 'error', message: json.error })
+      action={(formData) => {
+        if (address && isSignedIn) {
+          createAction(formData)
         } else {
-          setState({ status: 'success' })
+          signIn()
         }
       }}
     >
@@ -144,21 +97,41 @@ export function NameManager({
         suffix={`.${parentDomain}`}
       />
 
-      {address && (
-        <Button
-          type="submit"
-          className="rounded-lg"
-          loading={state.status === 'loading'}
-        >
-          Register
+      <input type="hidden" name="address" value={address} />
+      <input type="hidden" name="domain" value={parentDomain} />
+
+      {address && isSignedIn && <SubmitButton text="Register" />}
+      {!address && <ConnectButton className="rounded-lg" />}
+
+      {address && !isSignedIn && (
+        <Button className="rounded-lg" onClick={signIn}>
+          Sign In
         </Button>
       )}
 
-      {!address && <ConnectButton className="rounded-lg" />}
-
-      {state.status === 'error' && (
-        <p className="text-sm text-red-500">{state.message}</p>
+      {createState.data?.error && (
+        <p className="text-sm text-red-500">{createState.data?.error}</p>
       )}
     </form>
+  )
+}
+
+function SubmitButton({
+  text,
+  className,
+}: {
+  text: string
+  className?: string
+}) {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button
+      type="submit"
+      loading={pending}
+      className={cn('rounded-lg', className)}
+    >
+      {text}
+    </Button>
   )
 }

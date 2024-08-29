@@ -5,7 +5,6 @@ import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
 
 import { Button } from '@/components/Button'
 import { useNamestone } from '@/hooks/useNamestone'
-import { parentDomain } from '@/lib/namestone'
 import { cn, truncateAddress } from '@/lib/utils'
 
 export function ConnectButton({

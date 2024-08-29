@@ -1,19 +1,11 @@
-import * as v from 'valibot'
-import { Address, isAddress } from 'viem'
+import { z } from 'zod'
 
-export const NamestoneProfileSchema = v.object({
-  name: v.string(),
-  address: v.string(),
-  domain: v.string(),
-  text_records: v.optional(v.record(v.string(), v.string())),
-  coin_types: v.optional(
-    v.object({
-      '60': v.custom<Address>(
-        (input) => isAddress(input as Address),
-        'Invalid Ethereum address'
-      ),
-    })
-  ),
+export const NamestoneProfileSchema = z.object({
+  name: z.string(),
+  address: z.string(),
+  domain: z.string(),
+  text_records: z.record(z.string(), z.string()).optional(),
+  coin_types: z.record(z.string(), z.string()).optional(),
 })
 
-export type NamestoneProfile = v.InferOutput<typeof NamestoneProfileSchema>
+export type NamestoneProfile = z.infer<typeof NamestoneProfileSchema>
