@@ -9,6 +9,7 @@ import { createName } from '@/actions/create'
 import { updateName } from '@/actions/update'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { useIsMounted } from '@/hooks/useIsMounted'
 import { useNamestone } from '@/hooks/useNamestone'
 import { parentDomain } from '@/lib/namestone'
 import { cn } from '@/lib/utils'
@@ -23,6 +24,7 @@ export function NameManager({
   const { address } = useAccount()
   const { isSignedIn, signIn } = useSIWE()
   const names = useNamestone(address)
+  const isMounted = useIsMounted()
 
   const [createState, createAction] = useFormState(createName, {})
   const [updateState, updateAction] = useFormState(updateName, {})
@@ -33,7 +35,7 @@ export function NameManager({
     }
   }, [createState.data])
 
-  if (names.isLoading) {
+  if ((address && names.isLoading) || !isMounted) {
     return <Spinner />
   }
 
@@ -100,14 +102,21 @@ export function NameManager({
       <input type="hidden" name="address" value={address} />
       <input type="hidden" name="domain" value={parentDomain} />
 
-      {address && isSignedIn && <SubmitButton text="Register" />}
-      {!address && <ConnectButton className="rounded-lg" />}
+      {(() => {
+        if (address && isSignedIn) {
+          return <SubmitButton text="Register" />
+        }
 
-      {address && !isSignedIn && (
-        <Button className="rounded-lg" onClick={signIn}>
-          Sign In
-        </Button>
-      )}
+        if (address) {
+          return (
+            <Button className="rounded-lg" onClick={signIn}>
+              Sign In
+            </Button>
+          )
+        }
+
+        return <ConnectButton className="rounded-lg" />
+      })()}
 
       {createState.data?.error && (
         <p className="text-sm text-red-500">{createState.data?.error}</p>

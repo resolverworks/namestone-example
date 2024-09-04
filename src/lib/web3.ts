@@ -16,6 +16,7 @@ export const ckConfig = getDefaultConfig({
   },
   walletConnectProjectId: WALLETCONNECT_ID,
   appName: 'SheFi Names',
+  ssr: true,
 })
 
 export const wagmiConfig = createConfig(ckConfig)

@@ -20,17 +20,29 @@ export function ConnectButton({
   const show = () => setOpen(true)
   const isMounted = useIsMounted()
 
+  const namestoneName = namestone?.first?.name
+
   if (!isMounted) return null
 
   if (truncatedAddress) {
     return (
       <Button
-        className={cn('normal-case', ensAvatar && 'py-1 pl-1', props.className)}
+        className={cn(
+          'normal-case',
+          !namestoneName && ensAvatar && 'py-1 pl-1',
+          props.className
+        )}
         onClick={show}
         {...props}
       >
-        {ensAvatar && <img src={ensAvatar} className="w-8 rounded-full" />}
-        <span>{namestone?.first?.name || ensName || truncatedAddress}</span>
+        {namestoneName ? (
+          <span>{namestoneName}</span>
+        ) : (
+          <>
+            {ensAvatar && <img src={ensAvatar} className="w-8 rounded-full" />}
+            <span>{ensName || truncatedAddress}</span>
+          </>
+        )}
       </Button>
     )
   }
