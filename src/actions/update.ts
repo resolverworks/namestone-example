@@ -13,6 +13,7 @@ import { NamestoneProfile, NamestoneProfileSchema } from '@/types/namestone'
 
 const formSchema = zfd.formData(
   NamestoneProfileSchema.extend({
+    avatar: z.string().optional(),
     twitter: z.string().optional(),
     telegram: z.string().optional(),
   })
@@ -57,6 +58,7 @@ export const updateName = actionClient
       body: {
         ...profile,
         text_records: {
+          avatar: profile.avatar || '',
           'com.twitter': profile.twitter || '',
           'org.telegram': profile.telegram || '',
         },
