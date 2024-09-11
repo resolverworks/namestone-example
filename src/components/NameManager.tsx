@@ -101,14 +101,10 @@ export function NameManager({
         }
 
         if (address) {
-          return (
-            <Button className="rounded-lg" onClick={signIn}>
-              Sign In
-            </Button>
-          )
+          return <Button onClick={signIn}>Sign In</Button>
         }
 
-        return <ConnectButton className="rounded-lg" />
+        return <ConnectButton />
       })()}
 
       {createState.data?.error && (
@@ -128,11 +124,7 @@ function SubmitButton({
   const { pending } = useFormStatus()
 
   return (
-    <Button
-      type="submit"
-      loading={pending}
-      className={cn('rounded-lg', className)}
-    >
+    <Button type="submit" loading={pending}>
       {text}
     </Button>
   )
