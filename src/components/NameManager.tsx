@@ -72,7 +72,7 @@ export function NameManager({
         </div>
 
         <SubmitButton
-          text="Update Profile"
+          text="Save"
           className="mt-1 sm:mt-0"
           imgUploading={imgUploading}
         />
