@@ -1,6 +1,7 @@
 'use server'
 
 import { IronSession, getIronSession } from 'iron-session'
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { Address } from 'viem'
 import { z } from 'zod'
@@ -65,6 +66,8 @@ export const updateName = actionClient
     if (res.error) {
       return { error: res.error }
     }
+
+    revalidatePath('/')
 
     return res
   })

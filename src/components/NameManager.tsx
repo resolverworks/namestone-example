@@ -65,13 +65,6 @@ export function NameManager({
           />
         </div>
 
-        {/* <Input
-          name="description"
-          label="Description"
-          placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia."
-          defaultValue={names.data.first.text_records?.description}
-        /> */}
-
         <SubmitButton text="Update" className="mt-1 sm:mt-0" />
 
         {updateState.data?.error && (
