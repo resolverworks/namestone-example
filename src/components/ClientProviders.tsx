@@ -12,7 +12,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <siweClient.Provider>
+        <siweClient.Provider enabled={false}>
           <ConnectKitProvider theme="auto" mode="light">
             {children}
           </ConnectKitProvider>
