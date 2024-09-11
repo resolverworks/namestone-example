@@ -27,7 +27,7 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
   return (
     <div
       key={profile.name}
-      className="flex flex-col items-center gap-2 rounded-lg border border-brand-blueBtn bg-brand-blueBg p-4"
+      className="bg-gradient-card flex flex-col items-center gap-3 rounded-lg p-4"
     >
       <img
         src={avatarUrl}
@@ -37,7 +37,7 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
           setAvatarUrl(transparentImage)
         }}
       />
-      <span className="font-seasons">
+      <span>
         {profile.name}.{profile.domain}
       </span>
 
@@ -46,13 +46,13 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
         <div className="flex items-center gap-2">
           {twitter && (
             <a href={`https://twitter.com/${twitter}`} target="_blank">
-              <XIcon />
+              <XIcon className="h-4 w-4" />
             </a>
           )}
 
           {telegram && (
             <a href={`https://t.me/${telegram}`} target="_blank">
-              <TelegramIcon />
+              <TelegramIcon className="h-4 w-4" />
             </a>
           )}
         </div>
