@@ -79,8 +79,10 @@ export function NameManager({
           imgUploading={imgUploading}
         />
 
-        {updateState.data?.error && (
+        {updateState.data?.error ? (
           <p className="text-sm text-red-500">{updateState.data?.error}</p>
+        ) : (
+          <p className="text-sm">Note: this is public information</p>
         )}
       </form>
     )
