@@ -16,6 +16,7 @@ import { pinata } from '@/lib/pinata'
 import { cn } from '@/lib/utils'
 
 import { ConnectButton } from './ConnectButton'
+import { CameraIcon } from './Icons'
 import { Spinner } from './Spinner'
 
 export function NameManager({
@@ -51,6 +52,7 @@ export function NameManager({
         <FileUploader
           imgUploading={imgUploading}
           setImgUploading={setImgUploading}
+          defaultValue={names.data.first.text_records?.avatar}
         />
         <input type="hidden" name="name" value={names.data.first.name} />
         <input type="hidden" name="address" value={address} />
@@ -145,11 +147,18 @@ function SubmitButton({
 function FileUploader({
   imgUploading,
   setImgUploading,
+  defaultValue,
 }: {
   imgUploading: boolean
   setImgUploading: (uploading: boolean) => void
+  defaultValue: string | undefined
 }) {
   const [ipfsUri, setIpfsUri] = useState('')
+  const [localFileUrl, setLocalFileUrl] = useState<string | undefined>(
+    defaultValue
+      ? defaultValue.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/')
+      : undefined
+  )
 
   const uploadFile = async (file: File) => {
     try {
@@ -172,17 +181,43 @@ function FileUploader({
       return
     }
 
+    setLocalFileUrl(URL.createObjectURL(file))
     setImgUploading(true)
     await uploadFile(file)
     setImgUploading(false)
   }
 
   return (
-    <>
-      <input type="file" onChange={handleFileChange} />
+    <div
+      className="relative mx-auto aspect-square w-fit rounded-full border border-brand-orange bg-gradient-card"
+      style={
+        localFileUrl
+          ? {
+              backgroundImage: `url('${localFileUrl}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }
+          : {}
+      }
+    >
+      <label
+        htmlFor="file"
+        className="flex h-20 w-20 cursor-pointer items-center justify-center transition-opacity hover:opacity-75"
+      >
+        {!localFileUrl && <CameraIcon />}
+      </label>
+      <input
+        type="file"
+        id="file"
+        accept="image/*"
+        multiple={false}
+        onChange={handleFileChange}
+        className="invisible absolute left-0 top-0 h-full w-full"
+      />
       {ipfsUri && (
         <input type="hidden" name="avatar" value={`ipfs://${ipfsUri}`} />
       )}
-    </>
+    </div>
   )
 }
