@@ -136,10 +136,7 @@ function SubmitButton({
   const { pending } = useFormStatus()
 
   return (
-    <Button
-      type="submit"
-      loading={pending || imgUploading}
-    >
+    <Button type="submit" loading={pending || imgUploading}>
       {imgUploading ? 'Uploading...' : text}
     </Button>
   )
@@ -160,7 +157,7 @@ function FileUploader({
       const keyData = await keyRequest.json()
       const upload = await pinata.upload.file(file).key(keyData.JWT)
       console.log(upload)
-      setIpfsUri(upload.cid)
+      setIpfsUri(upload.IpfsHash)
     } catch (e) {
       console.error(e)
       alert('Trouble uploading file')

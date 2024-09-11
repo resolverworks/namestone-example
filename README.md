@@ -14,8 +14,12 @@ Pinata is a cloud storage provider that supports pinning content to IPFS. We use
 
 ## Configuration
 
-- Change the `parentDomain` in [`src/lib/namestone.ts`](./src/lib/namestone.ts#L5) to your desired domain.
-- Customize the allowlist functionality in [`src/lib/allowlist.ts`](./src/lib/allowlist.ts).
+- Change the `parentDomain` in [src/lib/namestone.ts](./src/lib/namestone.ts#L5) to your desired domain.
+- Customize the allowlist functionality in [src/lib/allowlist.ts](./src/lib/allowlist.ts).
+
+## Notes
+
+- Adding `gateway.pinata.cloud` as an approved host in [next.config.mjs](./next.config.mjs) is good for optimizing image loading, but also allows proxying of any IPFS content through your domain. If this is an issue, remove the host and change `<Image />` to `<img />` in [src/components/ProfileCard.tsx](./src/components/ProfileCard.tsx#L33).
 
 ## Development
 

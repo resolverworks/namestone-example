@@ -3328,10 +3328,10 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-pinata@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/pinata/-/pinata-1.1.0.tgz#c9229305ff264d55f7b5a084ba7ad604a2b1a3af"
-  integrity sha512-pvoE4XuPQrjK4RHErzyrubuEFgYCuvYkXU7bFdkVmbFxG2BrB01KooqLKOp+birufHEUOV6mcxHoZRyiFlxYgQ==
+pinata-web3@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/pinata-web3/-/pinata-web3-0.4.1.tgz#f43818ee758db1584317a09fb1f70c1ce28384a0"
+  integrity sha512-jJ4RSdRjyJBIyI02QbMmOGN7xxViA+eYixc7Dyx6OZGOgTIdohMa56nrOTi3PH7mLWLwim0GcgF5MRxc1u6M3w==
   dependencies:
     is-ipfs "^8.0.4"
     node-fetch "^3.3.1"

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { NamestoneProfile } from '@/types/namestone'
@@ -27,12 +28,14 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
   return (
     <div
       key={profile.name}
-      className="bg-gradient-card flex flex-col items-center gap-3 rounded-lg p-4"
+      className="flex flex-col items-center gap-3 rounded-lg bg-gradient-card p-4"
     >
-      <img
+      <Image
         src={avatarUrl}
         alt={profile.name}
-        className="h-12 w-12 rounded-full bg-brand-light object-contain"
+        width={48}
+        height={48}
+        className="h-12 w-12 rounded-full bg-brand-light object-cover"
         onError={() => {
           setAvatarUrl(transparentImage)
         }}
