@@ -14,14 +14,14 @@ export default async function Home() {
     <main>
       <section className="bg-gradient-radial">
         {/* Nav */}
-        <nav className="flex items-center justify-between px-4 py-6 sm:p-8">
+        <nav className="flex items-center justify-between p-6 sm:p-8">
           <img src="/logo.webp" alt="logo" className="w-20 sm:w-28" />
 
           <ConnectButton />
         </nav>
 
         {/* Hero */}
-        <section className="mx-auto flex min-h-[75svh] max-w-xl flex-col items-center justify-center px-4 py-24 text-center">
+        <section className="mx-auto flex min-h-[75svh] max-w-xl flex-col items-center justify-center px-6 py-24 text-center">
           <h1 className="text-3xl sm:text-5xl">
             Web3 Profiles for SheFi Summit Attendees
           </h1>
@@ -36,10 +36,10 @@ export default async function Home() {
       </section>
 
       {/* Connect */}
-      <section className="flex min-h-[25svh] flex-col items-center justify-center gap-6 bg-brand-yellowBg px-4 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
+      <section className="flex min-h-[25svh] flex-col items-center justify-center gap-6 bg-brand-yellowBg px-6 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
         <h2 className="text-2xl sm:text-4xl">Connect with each other</h2>
 
-        <div className="grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <div className="grid w-full max-w-3xl grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
           {profiles.map((profile) => (
             <ProfileCard key={profile.name} profile={profile} />
           ))}
@@ -47,7 +47,7 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="flex items-center justify-between gap-4 bg-brand-dark p-4 text-brand-light sm:px-8 sm:py-6">
+      <footer className="flex items-center justify-between gap-6 bg-brand-dark p-6 text-brand-light sm:px-8">
         <div className="flex flex-col">
           <span>Powered by Namestone</span>
           <span>
