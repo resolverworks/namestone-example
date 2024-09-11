@@ -1,7 +1,7 @@
 'use client'
 
 import { useSIWE } from 'connectkit'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useAccount } from 'wagmi'
 
