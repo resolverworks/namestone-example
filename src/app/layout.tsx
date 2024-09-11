@@ -24,6 +24,9 @@ const cyGroteskFont = localFont({
 export const metadata: Metadata = {
   title: 'SheFi Names',
   description: 'ENS subnames for attendees of SheFi Summits',
+  other: {
+    'theme-color': '#EDEDEB',
+  },
 }
 
 export default function RootLayout({

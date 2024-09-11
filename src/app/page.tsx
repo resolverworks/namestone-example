@@ -1,7 +1,8 @@
 import { ConnectButton } from '@/components/ConnectButton'
-import { FarcasterIcon, XIcon } from '@/components/Icons'
+import { XIcon } from '@/components/Icons'
 import { NameManager } from '@/components/NameManager'
 import { ProfileCard } from '@/components/ProfileCard'
+import { Squiggle } from '@/components/Squiggle'
 import { namestoneFetch, parentDomain } from '@/lib/namestone'
 import { NamestoneProfile } from '@/types/namestone'
 
@@ -35,8 +36,9 @@ export default async function Home() {
         </section>
       </section>
 
+      <Squiggle className="bg-gradient-to-b from-[#EDEDEB] to-transparent" />
+
       {/* Connect */}
-      <img src="/squiggle.svg" />
       <section className="flex min-h-[25svh] flex-col items-center justify-center gap-6 px-6 py-10 text-center sm:gap-8 sm:px-8 sm:py-14">
         <h2 className="text-2xl sm:text-4xl">Connect with each other</h2>
 
@@ -48,12 +50,21 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="flex items-center justify-between gap-6 bg-brand-dark p-6 text-brand-light sm:px-8">
-        <div className="flex flex-col">
-          <span>Powered by Namestone</span>
+      <footer className="flex items-center justify-between gap-6 bg-brand-dark px-6 py-4 text-brand-light sm:px-8 sm:py-6">
+        <div className="flex flex-col text-sm sm:text-base">
+          <span>
+            Powered by{' '}
+            <a
+              href="https://namestone.xyz/"
+              target="_blank"
+              className="text-brand-pink underline"
+            >
+              Namestone
+            </a>
+          </span>
           <span>
             <a
-              href="https://github.com/namestone"
+              href="https://github.com/resolverworks/shefi-subnames"
               target="_blank"
               className="text-brand-pink underline"
             >
@@ -65,10 +76,6 @@ export default async function Home() {
         <div className="flex gap-3 text-brand-pink">
           <a href="https://x.com/shefiorg" target="_blank">
             <XIcon className="h-6 w-6" />
-          </a>
-
-          <a href="https://warpcast.com/shefi" target="_blank">
-            <FarcasterIcon className="h-6 w-6" />
           </a>
         </div>
       </footer>
