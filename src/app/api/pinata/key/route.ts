@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-// import { v4: uuidv4 } from "uuid";
 import { pinata } from '@/lib/pinata'
 
 export const dynamic = 'force-dynamic'

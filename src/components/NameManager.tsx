@@ -71,7 +71,11 @@ export function NameManager({
           />
         </div>
 
-        <SubmitButton text="Update" className="mt-1 sm:mt-0" />
+        <SubmitButton
+          text="Update Profile"
+          className="mt-1 sm:mt-0"
+          imgUploading={imgUploading}
+        />
 
         {updateState.data?.error && (
           <p className="text-sm text-red-500">{updateState.data?.error}</p>
@@ -141,7 +145,7 @@ function SubmitButton({
       loading={pending || imgUploading}
       className={cn('rounded-lg', className)}
     >
-      {text}
+      {imgUploading ? 'Uploading...' : text}
     </Button>
   )
 }
@@ -157,16 +161,13 @@ function FileUploader({
 
   const uploadFile = async (file: File) => {
     try {
-      setImgUploading(true)
       const keyRequest = await fetch('/api/pinata/key')
       const keyData = await keyRequest.json()
       const upload = await pinata.upload.file(file).key(keyData.JWT)
-      setImgUploading(false)
       console.log(upload)
       setIpfsUri(upload.cid)
     } catch (e) {
       console.error(e)
-      setImgUploading(false)
       alert('Trouble uploading file')
     }
   }
@@ -179,7 +180,9 @@ function FileUploader({
       return
     }
 
+    setImgUploading(true)
     await uploadFile(file)
+    setImgUploading(false)
   }
 
   return (

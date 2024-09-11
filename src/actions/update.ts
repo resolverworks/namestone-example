@@ -1,6 +1,7 @@
 'use server'
 
 import { IronSession, getIronSession } from 'iron-session'
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { Address } from 'viem'
 import { z } from 'zod'
@@ -12,6 +13,7 @@ import { NamestoneProfile, NamestoneProfileSchema } from '@/types/namestone'
 
 const formSchema = zfd.formData(
   NamestoneProfileSchema.extend({
+    avatar: z.string().optional(),
     twitter: z.string().optional(),
     telegram: z.string().optional(),
   })
@@ -56,6 +58,7 @@ export const updateName = actionClient
       body: {
         ...profile,
         text_records: {
+          avatar: profile.avatar || '',
           'com.twitter': profile.twitter || '',
           'org.telegram': profile.telegram || '',
         },
@@ -65,6 +68,8 @@ export const updateName = actionClient
     if (res.error) {
       return { error: res.error }
     }
+
+    revalidatePath('/')
 
     return res
   })
