@@ -11,7 +11,7 @@ const transparentImage =
   'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"%3E%3C/svg%3E'
 
 export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
-  const [avatarUrl, setAvatarUrl] = useState(transparentImage)
+  const [avatarUrl, setAvatarUrl] = useState<string>()
   const twitter = profile.text_records?.['com.twitter']
   const telegram = profile.text_records?.['org.telegram']
   const hasSocials = twitter || telegram
@@ -21,7 +21,7 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
     setAvatarUrl(
       avatarRecord?.startsWith('ipfs://')
         ? `https://gateway.pinata.cloud/ipfs/${avatarRecord.split('ipfs://')[1]}`
-        : (avatarRecord ?? transparentImage)
+        : avatarRecord
     )
   }, [avatarRecord])
 
@@ -31,7 +31,7 @@ export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
       className="flex flex-col items-center gap-3 rounded-lg bg-gradient-card p-4"
     >
       <Image
-        src={avatarUrl}
+        src={avatarUrl ?? transparentImage}
         alt={profile.name}
         width={48}
         height={48}
