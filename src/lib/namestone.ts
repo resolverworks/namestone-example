@@ -31,7 +31,7 @@ export async function namestoneFetch<T>({
     },
     body: JSON.stringify(body),
     next: {
-      revalidate: 60,
+      revalidate: 0,
     },
   })
 
