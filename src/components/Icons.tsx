@@ -48,7 +48,7 @@ export function TelegramIcon({ ...props }: Props) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_21_145)">
+      <g clipPath="url(#clip0_21_145)">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
