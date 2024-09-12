@@ -22,9 +22,10 @@ export default async function Home() {
         </nav>
 
         {/* Hero */}
-        <section className="mx-auto flex min-h-[75svh] max-w-2xl flex-col items-center justify-center px-6 py-24 text-center">
+        <section className="mx-auto flex min-h-[75svh] max-w-3xl flex-col items-center justify-center px-6 py-24 text-center">
           <h1 className="text-4xl sm:text-6xl">
-            Web3 Profiles for SheFi Summit Attendees
+            Web3 Profiles for <br />
+            SheFi Summit Attendees
           </h1>
 
           <span className="mb-8 mt-3 text-lg sm:text-xl">
