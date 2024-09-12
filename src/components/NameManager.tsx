@@ -62,12 +62,14 @@ export function NameManager({
           <Input
             name="twitter"
             label="Twitter / X"
+            autoCapitalize="none"
             placeholder="shefiorg"
             defaultValue={names.data.first.text_records?.['com.twitter']}
           />
           <Input
             name="telegram"
             label="Telegram"
+            autoCapitalize="none"
             placeholder="shefiorg"
             defaultValue={names.data.first.text_records?.['org.telegram']}
           />
@@ -79,8 +81,12 @@ export function NameManager({
           imgUploading={imgUploading}
         />
 
-        {updateState.data?.error ? (
-          <p className="text-sm text-red-500">{updateState.data?.error}</p>
+        {updateState?.data?.error || updateState?.validationErrors ? (
+          <p className="text-sm text-red-500">
+            {updateState?.data?.error ||
+              (updateState?.validationErrors &&
+                'Inputs should not have spaces')}
+          </p>
         ) : (
           <p className="text-sm">Note: this is public information</p>
         )}
@@ -115,7 +121,7 @@ export function NameManager({
         }
 
         if (address) {
-          return <Button onClick={signIn}>Sign In</Button>
+          return <Button type="submit">Sign In</Button>
         }
 
         return <ConnectButton />
@@ -155,7 +161,7 @@ function FileUploader({
   setImgUploading: (uploading: boolean) => void
   defaultValue: string | undefined
 }) {
-  const [ipfsUri, setIpfsUri] = useState('')
+  const [ipfsUri, setIpfsUri] = useState(defaultValue ?? '')
   const [localFileUrl, setLocalFileUrl] = useState<string | undefined>(
     defaultValue
       ? defaultValue.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/')
@@ -168,7 +174,7 @@ function FileUploader({
       const keyData = await keyRequest.json()
       const upload = await pinata.upload.file(file).key(keyData.JWT)
       console.log(upload)
-      setIpfsUri(upload.IpfsHash)
+      setIpfsUri(`ipfs://${upload.IpfsHash}`)
     } catch (e) {
       console.error(e)
       alert('Trouble uploading file')
@@ -217,9 +223,7 @@ function FileUploader({
         onChange={handleFileChange}
         className="invisible absolute left-0 top-0 h-full w-full"
       />
-      {ipfsUri && (
-        <input type="hidden" name="avatar" value={`ipfs://${ipfsUri}`} />
-      )}
+      {ipfsUri && <input type="hidden" name="avatar" value={ipfsUri} />}
     </div>
   )
 }

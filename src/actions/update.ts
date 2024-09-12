@@ -11,11 +11,13 @@ import { actionClient } from '@/actions/client'
 import { namestoneFetch, parentDomain } from '@/lib/namestone'
 import { NamestoneProfile, NamestoneProfileSchema } from '@/types/namestone'
 
+const noSpaceString = z.string().refine((value) => !value.includes(' '))
+
 const formSchema = zfd.formData(
   NamestoneProfileSchema.extend({
-    avatar: z.string().optional(),
-    twitter: z.string().optional(),
-    telegram: z.string().optional(),
+    avatar: noSpaceString.optional(),
+    twitter: noSpaceString.optional(),
+    telegram: noSpaceString.optional(),
   })
 )
 

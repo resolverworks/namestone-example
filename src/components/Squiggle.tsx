@@ -8,7 +8,7 @@ export function Squiggle({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <g clip-path="url(#clip0_60_285)">
+      <g clipPath="url(#clip0_60_285)">
         <path
           d="M3804 -4H0V37.9175L147.5 103L314 37.9175L477.5 103L618.5 24.6804L765.5 103L911.5 30.7474L1071 103L1223.5 24.6804L1376.5 103L1526.5 24.6804L1675.5 103L1826 35.7113L1971.5 103L2119.5 35.7113L2276 103L2420 20.268L2578.5 103L2726.5 29.6443L2887 103L3032 29.6443L3186.5 103L3340.5 36.8144L3495.25 103L3630.5 36.8144L3804 103V-4Z"
           fill="#EDEDEB"

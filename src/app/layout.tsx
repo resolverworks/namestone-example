@@ -23,7 +23,15 @@ const cyGroteskFont = localFont({
 
 export const metadata: Metadata = {
   title: 'SheFi Names',
-  description: 'ENS subnames for attendees of SheFi Summits',
+  description: 'Web3 profiles for SheFi Summit attendees',
+  openGraph: {
+    images: ['/opengraph.jpg'],
+  },
+  metadataBase: new URL(
+    process.env.NODE_ENV === 'production'
+      ? 'https://shefi-subnames.vercel.app'
+      : 'http://localhost:3000'
+  ),
   other: {
     'theme-color': '#EDEDEB',
   },
