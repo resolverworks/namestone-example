@@ -2,7 +2,7 @@ import { NamestoneProfile } from '@/types/namestone'
 
 const NAMESTONE_API_KEY = process.env.NAMESTONE_API_KEY
 
-export const parentDomain = 'testfi.eth'
+export const parentDomain = 'shefi.eth'
 
 export type Props = {
   path: string
