@@ -65,7 +65,7 @@ export default async function Home() {
           </span>
           <span>
             <a
-              href="https://github.com/resolverworks/shefi-subnames"
+              href="https://github.com/resolverworks/namestone-example"
               target="_blank"
               className="text-brand-pink underline"
             >
