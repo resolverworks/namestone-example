@@ -1,3 +1,5 @@
+import { Toaster } from 'react-hot-toast'
+
 import { ConnectButton } from '@/components/ConnectButton'
 import { XIcon } from '@/components/Icons'
 import { NameManager } from '@/components/NameManager'
@@ -80,6 +82,8 @@ export default async function Home() {
           </a>
         </div>
       </footer>
+
+      <Toaster position="bottom-center" />
     </main>
   )
 }

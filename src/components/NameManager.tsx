@@ -3,6 +3,7 @@
 import { useSIWE } from 'connectkit'
 import React, { useEffect, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
+import toast, { Toaster } from 'react-hot-toast'
 import { useAccount } from 'wagmi'
 
 import { createName } from '@/actions/create'
@@ -103,6 +104,9 @@ export function NameManager({
           createAction(formData)
         } else {
           signIn()
+          toast('Go back to your wallet app', {
+            icon: '✍️',
+          })
         }
       }}
     >
