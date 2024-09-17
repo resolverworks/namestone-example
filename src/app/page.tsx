@@ -44,7 +44,7 @@ export default async function Home() {
         <h2 className="text-2xl sm:text-4xl">Connect with each other</h2>
 
         <div className="grid w-full max-w-4xl grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-          {profiles.map((profile) => (
+          {profiles?.map((profile) => (
             <ProfileCard key={profile.name} profile={profile} />
           ))}
         </div>

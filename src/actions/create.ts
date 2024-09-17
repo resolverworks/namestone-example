@@ -34,7 +34,7 @@ export const createName = actionClient
       }
     }
 
-    if (!isAllowlisted(profile.address)) {
+    if (!(await isAllowlisted(profile.address))) {
       return { error: "You're not permitted to register a name at this time." }
     }
 

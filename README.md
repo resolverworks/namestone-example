@@ -12,6 +12,10 @@ Namestone is an API for easy subdomain management and issuance. Follow [their do
 
 Pinata is a cloud storage provider that supports pinning content to IPFS. We use it to store ENS avatar images. Follow [this guide](https://docs.pinata.cloud/frameworks/next-js#setup-pinata-2) to create the relevant API key (it needs Admin permissions).
 
+### Upstash
+
+Upstash is a Redis provider that we use for storing allowlisted addresses. Customize the allowlist functionality in [src/lib/allowlist.ts](./src/lib/allowlist.ts).
+
 ## Configuration
 
 - Change the `parentDomain` in [src/lib/namestone.ts](./src/lib/namestone.ts#L5) to your desired domain.
