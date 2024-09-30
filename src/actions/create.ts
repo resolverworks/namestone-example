@@ -34,9 +34,9 @@ export const createName = actionClient
       }
     }
 
-    // if (!(await isAllowlisted(profile.address))) {
-    //   return { error: "You're not permitted to register a name at this time." }
-    // }
+    if (!(await isAllowlisted(profile.address))) {
+      return { error: "You're not permitted to register a name at this time." }
+    }
 
     // Limit names to 3-12 characters, alphanumeric, and no special characters (besides hyphen)
     if (
