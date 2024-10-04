@@ -8,8 +8,9 @@ import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 
 import { actionClient } from '@/actions/client'
-import { namestoneFetch, parentDomain } from '@/lib/namestone'
-import { NamestoneProfile, NamestoneProfileSchema } from '@/types/namestone'
+import { namestone, parentDomain } from '@/lib/namestone'
+import { extractErrorMessage } from '@/lib/utils'
+import { NamestoneProfileSchema } from '@/types/namestone'
 
 const noSpaceString = z.string().refine((value) => !value.includes(' '))
 
@@ -42,8 +43,9 @@ export const updateName = actionClient
     }
 
     // Check if the name exists
-    const namesByAddress = await namestoneFetch<NamestoneProfile[]>({
-      path: `get-names?domain=${parentDomain}&address=${profile.address}`,
+    const namesByAddress = await namestone.getNames({
+      domain: parentDomain,
+      address: profile.address,
     })
 
     const nameExists = namesByAddress.find((name) => name.name === profile.name)
@@ -53,25 +55,23 @@ export const updateName = actionClient
       return { error: 'Name does not exist, or you do not own this name.' }
     }
 
-    // If the name exists, update it
-    const res = await namestoneFetch<{ success?: boolean; error?: string }>({
-      path: 'set-name',
-      method: 'POST',
-      body: {
+    try {
+      // If the name exists, update it
+      await namestone.setName({
         ...profile,
         text_records: {
           avatar: profile.avatar || '',
           'com.twitter': profile.twitter || '',
           'org.telegram': profile.telegram || '',
         },
-      },
-    })
+      })
 
-    if (res.error) {
-      return { error: res.error }
+      revalidatePath('/')
+      return { success: true }
+    } catch (err) {
+      return {
+        error:
+          err instanceof Error ? extractErrorMessage(err) : 'Unknown error',
+      }
     }
-
-    revalidatePath('/')
-
-    return res
   })

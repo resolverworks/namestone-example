@@ -3083,6 +3083,11 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
+namestone-sdk@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/namestone-sdk/-/namestone-sdk-0.2.8.tgz#21770fffa5c75ebbcc5d1c9ae482a23e040375a1"
+  integrity sha512-qFKpW4zyUxORu5kBbKoV674+jwm96qYBwH2JTSk50R3w38B6axykzrCNSnH0pgE59+89Vk5epzqkcieUA81ZaQ==
+
 nanoid@^3.3.6, nanoid@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.7.tgz#d0c301a691bc8d54efa0a2226ccf3fe2fd656bd8"

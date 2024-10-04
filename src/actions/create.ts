@@ -7,7 +7,8 @@ import { zfd } from 'zod-form-data'
 
 import { actionClient } from '@/actions/client'
 import { isAllowlisted } from '@/lib/allowlist'
-import { namestoneFetch } from '@/lib/namestone'
+import { namestone } from '@/lib/namestone'
+import { extractErrorMessage } from '@/lib/utils'
 import { NamestoneProfileSchema } from '@/types/namestone'
 
 const formSchema = zfd.formData(NamestoneProfileSchema)
@@ -47,15 +48,13 @@ export const createName = actionClient
       return { error: 'Name must be 3 - 12 alphanumeric characters' }
     }
 
-    const res = await namestoneFetch<{ success?: boolean; error?: string }>({
-      path: 'claim-name?single_claim=1',
-      method: 'POST',
-      body: profile,
-    })
-
-    if (res.error) {
-      return { error: res.error }
+    try {
+      await namestone.claimName({ ...profile, single_claim: 1 })
+      return { success: true }
+    } catch (err) {
+      return {
+        error:
+          err instanceof Error ? extractErrorMessage(err) : 'Unknown error',
+      }
     }
-
-    return res
   })

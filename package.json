@@ -16,6 +16,7 @@
     "connectkit": "^1.8.2",
     "connectkit-next-siwe": "^0.3.0",
     "iron-session": "^8.0.3",
+    "namestone-sdk": "^0.2.8",
     "next": "14.2.6",
     "next-safe-action": "^7.7.1",
     "pinata-web3": "^0.4.1",

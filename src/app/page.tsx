@@ -5,13 +5,10 @@ import { XIcon } from '@/components/Icons'
 import { NameManager } from '@/components/NameManager'
 import { ProfileCard } from '@/components/ProfileCard'
 import { Squiggle } from '@/components/Squiggle'
-import { namestoneFetch, parentDomain } from '@/lib/namestone'
-import { NamestoneProfile } from '@/types/namestone'
+import { namestone, parentDomain } from '@/lib/namestone'
 
 export default async function Home() {
-  const profiles = await namestoneFetch<NamestoneProfile[]>({
-    path: `get-names?domain=${parentDomain}`,
-  })
+  const profiles = await namestone.getNames({ domain: parentDomain })
 
   return (
     <main>

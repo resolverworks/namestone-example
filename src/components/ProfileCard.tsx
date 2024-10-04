@@ -1,16 +1,15 @@
 'use client'
 
+import { NameData } from 'namestone-sdk'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-
-import { NamestoneProfile } from '@/types/namestone'
 
 import { TelegramIcon, XIcon } from './Icons'
 
 const transparentImage =
   'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"%3E%3C/svg%3E'
 
-export function ProfileCard({ profile }: { profile: NamestoneProfile }) {
+export function ProfileCard({ profile }: { profile: NameData }) {
   const [avatarUrl, setAvatarUrl] = useState<string>()
   const twitter = profile.text_records?.['com.twitter']
   const telegram = profile.text_records?.['org.telegram']
