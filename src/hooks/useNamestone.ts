@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
+import { NameData } from 'namestone-sdk'
 import { Address } from 'viem'
-
-import { NamestoneProfile } from '@/types/namestone'
 
 export function useNamestone(address?: Address) {
   return useQuery({
@@ -13,7 +12,7 @@ export function useNamestone(address?: Address) {
       }
 
       const res = await fetch(`/api/names?${queryParams.toString()}`)
-      const json = (await res.json()) as NamestoneProfile[]
+      const json = (await res.json()) as NameData[]
       if (address) {
         return { first: json[0], all: json }
       }

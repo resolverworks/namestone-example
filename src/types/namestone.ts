@@ -7,5 +7,3 @@ export const NamestoneProfileSchema = z.object({
   text_records: z.record(z.string(), z.string()).optional(),
   coin_types: z.record(z.string(), z.string()).optional(),
 })
-
-export type NamestoneProfile = z.infer<typeof NamestoneProfileSchema>
